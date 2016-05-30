@@ -1,0 +1,34 @@
+CACHE MANIFEST
+#2016-05-24 16:15
+
+CACHE:
+/node_modules/angular/angular.js
+/node_modules/angular-route/angular-route.js
+/node_modules/angular-animate/angular-animate.js
+/node_modules/angular-aria/angular-aria.js
+/node_modules/angular-messages/angular-messages.js
+/node_modules/angular-material/angular-material.js
+/node_modules/angular-material/angular-material.css
+/app/assets/app.css
+/app/src/app.js
+/app/src/listControllers.js
+/app/src/loginControllers.js
+/app/src/newControllers.js
+/app/partials/login.html
+/app/partials/new-order.html
+/app/partials/order-list.html
+/app/assets/128.png
+/app/assets/192.png
+/app/assets/btn_google_light_normal_ios.svg
+/app/assets/ic_account_circle_black_24px.svg
+/app/assets/ic_add_shopping_cart_white_24px.svg
+/app/assets/ic_add_white_24px.svg
+/app/assets/ic_arrow_back_white_24px.svg
+/app/assets/ic_check_black_24px.svg
+/app/assets/ic_close_black_24px.svg
+/app/assets/ic_empty_shopping_cart_black_24px.svg
+/app/assets/ic_more_vert_white_24px.svg
+/app/assets/ic_remove_shopping_cart_black_24px.svg
+/app/assets/ic_shopping_basket_black_24px.svg
+/app/assets/ic_transfer_within_a_station_black_24px.svg
+/app/index.html

@@ -1,0 +1,72 @@
+<md-toolbar layout="row" md-scroll-shrink md-whiteframe="2">
+    <div class="md-toolbar-tools">
+        <h2>
+            <span>Orders</span>
+        </h2>
+        <span flex></span>
+        <md-icon md-svg-src="./assets/ic_account_circle_black_24px.svg" style="color: lightgrey"></md-icon>
+        <md-menu md-position-mode="target-right target">
+            <md-button class="md-icon-button" ng-click="openMenu($mdOpenMenu)">
+                <md-icon md-svg-src="./assets/ic_more_vert_white_24px.svg"></md-icon>
+            </md-button>
+            <md-menu-content>
+                <md-menu-item>
+                    <md-button ng-click="logout()">
+                        Logout
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="changePassword()">
+                        Change Password
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="changeDoor()">
+                        Change Address
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </div>
+
+</md-toolbar>
+<md-content flex id="orders_content" layout-padding="" layout="row">
+    <div layout="column" layout-fill="">
+        <div layout="column" ng-show="orders.length==0" style="color: #999999;" layout-align="end center">
+            <md-icon md-svg-src="./assets/ic_empty_shopping_cart_black_24px.svg" id="empty_cart"></md-icon>
+            <span>You have no order, why not give it a shot?</span>
+            <span>Tap the right bottom button to start</span>
+        </div>
+        <md-card ng-repeat="order in orders">
+            <md-card-title>
+                <md-card-title-media ng-switch="order.status">
+                    <div class="md-media-sm canceled_icon status_icon" ng-switch-when="1"></div>
+                    <div class="md-media-sm completed_icon status_icon" ng-switch-when="2"></div>
+                    <div class="md-media-sm engaging_icon status_icon" ng-switch-when="3"></div>
+                </md-card-title-media>
+                <md-card-title-text ng-hide="order.status!=3" layout-padding>
+                    <span class="md-title">13:00</span>
+                    <span class="md-subhead">After 30 minutes - Laundry No.{{order.machine}}</span>
+                </md-card-title-text>
+                <md-card-title-text ng-hide="order.status==3" layout-padding>
+                    <span class="md-title">13:00</span>
+                    <span class="md-subhead">After 30 minutes - Laundry No.{{order.machine}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-divider md-inset></md-divider>
+            <md-card-actions layout="row" layout-align="end center" ng-hide="order.status!=3">
+                <md-button>
+                    <md-icon md-svg-src="./assets/ic_transfer_within_a_station_black_24px.svg"></md-icon>
+                    Door Service
+                </md-button>
+                <md-button>
+                    <md-icon md-svg-src="./assets/ic_remove_shopping_cart_black_24px.svg"></md-icon>
+                    Cancel
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</md-content>
+<md-button class="md-fab md-fab-bottom-right" md-whiteframe="4" ng-click="newOrder()">
+    <md-icon md-svg-src="./assets/ic_add_shopping_cart_white_24px.svg"></md-icon>
+</md-button>

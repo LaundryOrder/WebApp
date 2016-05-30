@@ -1,0 +1,26 @@
+<md-content layout-padding="" layout="column" layout-fill="">
+    <form name="loginForm" layout="column">
+        <md-input-container class="md-block">
+            <label>Username</label>
+            <input md-maxlength="30" required md-no-asterisk name="username" type="text" ng-model="user.username">
+            <div ng-messages="loginForm.username.$error">
+                <div ng-message="required">This is required</div>
+                <div ng-message="md-maxlength">Username has to be less than 30 characters long.</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Password</label>
+            <input md-maxlength="30" required md-no-asterisk name="password" type="password" ng-model="user.password">
+            <div ng-messages="loginForm.password.$error">
+                <div ng-message="required">This is required</div>
+                <div ng-message="md-maxlength">Password has to be less than 30 characters long.</div>
+            </div>
+        </md-input-container>
+        <md-button class="md-raised md-primary" layout-align="center end" ng-click="login()"
+                   ng-disabled="loginForm.$invalid">
+            Login or Register
+        </md-button>
+    </form>
+    <span flex></span>
+    <md-button class="login_icon_google" layout-align="end center">Login via Google</md-button>
+</md-content>

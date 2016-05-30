@@ -1,0 +1,46 @@
+<md-toolbar layout="row" md-scroll-shrink md-whiteframe="2">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="back()">
+            <md-icon md-svg-src="./assets/ic_arrow_back_white_24px.svg"></md-icon>
+        </md-button>
+        <h2>
+            <span>New Order</span>
+        </h2>
+        <span flex></span>
+        <!--<md-button class="md-icon-button">-->
+        <!--<md-icon md-svg-icon="./assets/ic_add_shopping_cart_white_24px.svg"></md-icon>-->
+        <!--</md-button>-->
+    </div>
+
+</md-toolbar>
+<md-content flex id="new_content" layout-padding="">
+    <md-input-container class="md-block">
+        <label>Estimate Time</label>
+        <input ng-model="avail" id="estimate_time_input" disabled>
+    </md-input-container>
+    <md-checkbox ng-model="has_door" class="md-primary">
+        Door Service
+    </md-checkbox>
+    <form name="orderForm" layout="column" ng-show="has_door">
+        <md-input-container class="md-block">
+            <label>Address</label>
+            <input md-maxlength="30" required md-no-asterisk name="address" type="text" ng-model="door.address">
+            <div ng-messages="orderForm.address.$error">
+                <div ng-message="required">This is required</div>
+                <div ng-message="md-maxlength">Address has to be less than 30 characters long.</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Phone</label>
+            <input md-maxlength="20" required md-no-asterisk name="phone" type="text" ng-model="door.phone">
+            <div ng-messages="orderForm.phone.$error">
+                <div ng-message="required">This is required</div>
+                <div ng-message="md-maxlength">Phone has to be less than 20 characters long.</div>
+            </div>
+        </md-input-container>
+    </form>
+</md-content>
+<md-button class="md-fab md-fab-bottom-right" md-whiteframe="4" ng-disabled="has_door&&orderForm.$invalid"
+           ng-click="postOrder()">
+    <md-icon md-svg-src="./assets/ic_add_white_24px.svg"></md-icon>
+</md-button>
