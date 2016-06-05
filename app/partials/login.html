@@ -21,6 +21,11 @@
             Login or Register
         </md-button>
     </form>
+    <span layout="row">
+        <span flex></span>
+        <md-progress-circular md-mode="indeterminate" ng-show="loading"></md-progress-circular>
+        <span flex></span>
+    </span>
     <span flex></span>
     <md-button class="login_icon_google" layout-align="end center">Login via Google</md-button>
 </md-content>
