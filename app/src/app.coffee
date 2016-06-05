@@ -1,6 +1,7 @@
-app = angular.module 'AMPlaygroundApp0', ['ngMaterial', 'ngRoute', 'ngMessages',
+angular
+.module 'AMPlaygroundApp0', ['ngMaterial', 'ngRoute', 'ngMessages','ngStorage',
   'listControllers', 'loginControllers', 'newControllers']
-app
+.constant 'BASE_URL', 'http://192.168.1.233:8233'
 .config ['$routeProvider', ($routeProvider)->
   $routeProvider
   .when '/orders',
@@ -14,6 +15,15 @@ app
     controller: 'NewCtrl'
   .otherwise
       redirectTo: '/login'
+]
+.factory 'APIURLProcessor', ($q,$localStorage, BASE_URL)->
+  request: (config) ->
+    if config.url[0] == '/'
+      config.url = BASE_URL + config.url
+      config.headers['Authorization']='Token '+$localStorage.token
+    config
+.config ['$httpProvider', ($httpProvider)->
+  $httpProvider.interceptors.push('APIURLProcessor');
 ]
 #.config ($mdThemingProvider) ->
 #  $mdThemingProvider.theme 'default'
