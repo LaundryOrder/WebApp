@@ -2,6 +2,11 @@
   "name": "laundry-order-webapp",
   "version": "0.0.1",
   "description": "Just another Web App Frontend for LaundryOrder",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LaundryOrder/WebApp.git"
+  },
+  "license": "MIT",
   "peerDependencies": {
     "angular": "@>=1.3 <1.6",
     "angular-animate": "^@>=1.3 <1.6",
