@@ -4,12 +4,24 @@ var listControllers;
 listControllers = angular.module('listControllers', ['ngMaterial', 'ngMessages']);
 
 listControllers.controller('ListCtrl', [
-  '$scope', '$http', '$location', '$rootScope', function($scope, $http, $location, $rootScope) {
-    var empty_orders, full_orders, originatorEv;
+  '$scope', '$http', '$location', '$mdDialog', function($scope, $http, $location, $mdDialog) {
+    var originatorEv;
     originatorEv = null;
     $scope.openMenu = function($mdOpenMenu, ev) {
       originatorEv = ev;
       $mdOpenMenu(ev);
+    };
+    $scope.showQR = function(ev, token) {
+      return $mdDialog.show({
+        targetEvent: ev,
+        template: '<md-dialog ng-click="hide()">\n    <md-dialog-content>\n        <qr text="\'' + token + '\'"></qr>\n    </md-dialog-content>\n</md-dialog>',
+        clickOutsideToClose: true,
+        controller: function($scope, $mdDialog) {
+          return $scope.hide = function() {
+            return $mdDialog.hide();
+          };
+        }
+      });
     };
     $scope.newOrder = function() {
       return $location.path("new");
@@ -17,14 +29,14 @@ listControllers.controller('ListCtrl', [
     $scope.logout = function() {
       return $location.path("login");
     };
-    full_orders = [
+    return $scope.orders = [
       {
-        "end": 1464022566053,
+        "end": 1465229567931,
         "machine": 0,
         "order_id": 9,
-        "order_time": 1463902566060,
+        "order_time": 1465131983574,
         "order_token": "e0f2658498d5427795a24a0d167b0b11",
-        "start": 1463902566053,
+        "start": 1465219567931,
         "status": 3
       }, {
         "end": 1463853323760,
@@ -68,13 +80,6 @@ listControllers.controller('ListCtrl', [
         "status": 2
       }
     ];
-    empty_orders = [];
-    console.log($rootScope.username);
-    if ($rootScope.username === 'e') {
-      return $scope.orders = empty_orders;
-    } else {
-      return $scope.orders = full_orders;
-    }
   }
 ]);
 

@@ -44,17 +44,22 @@
                     <div class="md-media-sm completed_icon status_icon" ng-switch-when="2"></div>
                     <div class="md-media-sm engaging_icon status_icon" ng-switch-when="3"></div>
                 </md-card-title-media>
-                <md-card-title-text ng-hide="order.status!=3" layout-padding>
-                    <span class="md-title">13:00</span>
-                    <span class="md-subhead">After 30 minutes - Laundry No.{{order.machine}}</span>
+                <md-card-title-text ng-show="order.status!=3" layout-padding>
+                    <span class="md-title">{{order.order_time | date:'MMM d'}}</span>
+                    <span class="md-subhead"><span am-time-ago="order.order_time"></span> - {{order.status==2? 'Canceled':'Completed'}} </span>
                 </md-card-title-text>
-                <md-card-title-text ng-hide="order.status==3" layout-padding>
-                    <span class="md-title">13:00</span>
-                    <span class="md-subhead">After 30 minutes - Laundry No.{{order.machine}}</span>
+                <md-card-title-text ng-show="order.status==3" layout-padding>
+                    <span class="md-title">{{order.start | date:'HH:mm'}}</span>
+                    <span class="md-subhead"><span
+                            am-time-ago="order.start"></span> - Laundry No.{{order.machine}}</span>
                 </md-card-title-text>
             </md-card-title>
             <md-divider md-inset></md-divider>
             <md-card-actions layout="row" layout-align="end center" ng-hide="order.status!=3">
+                <md-button ng-click="showQR($event,order.order_token)">
+                    <md-icon md-svg-src="./assets/qrcode.svg"></md-icon>
+                    QR Code
+                </md-button>
                 <md-button>
                     <md-icon md-svg-src="./assets/ic_transfer_within_a_station_black_24px.svg"></md-icon>
                     Door Service

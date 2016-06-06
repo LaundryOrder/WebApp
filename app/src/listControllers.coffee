@@ -1,23 +1,31 @@
 listControllers = angular.module 'listControllers', ['ngMaterial', 'ngMessages']
-listControllers.controller 'ListCtrl', ['$scope', '$http', '$location', '$rootScope',
-  ($scope, $http, $location, $rootScope)->
+listControllers.controller 'ListCtrl', ['$scope', '$http', '$location', '$mdDialog',
+  ($scope, $http, $location, $mdDialog)->
     originatorEv = null
     $scope.openMenu = ($mdOpenMenu, ev)->
       originatorEv = ev
       $mdOpenMenu(ev)
       return
+    $scope.showQR = (ev, token)->
+      $mdDialog.show
+        targetEvent: ev
+        template: '<md-dialog ng-click="hide()">\n    <md-dialog-content>\n        <qr text="\'' + token + '\'"></qr>\n    </md-dialog-content>\n</md-dialog>'
+        clickOutsideToClose: true
+        controller: ($scope, $mdDialog)->
+          $scope.hide = ->
+            $mdDialog.hide()
     $scope.newOrder = ->
       $location.path "new"
     $scope.logout = ->
       $location.path "login"
-    full_orders = [
+    $scope.orders = [
       {
-        "end": 1464022566053,
+        "end": 1465229567931,
         "machine": 0,
         "order_id": 9,
-        "order_time": 1463902566060,
+        "order_time": 1465131983574,
         "order_token": "e0f2658498d5427795a24a0d167b0b11",
-        "start": 1463902566053,
+        "start": 1465219567931,
         "status": 3
       },
       {
@@ -66,11 +74,4 @@ listControllers.controller 'ListCtrl', ['$scope', '$http', '$location', '$rootSc
         "status": 2
       }
     ]
-    empty_orders = []
-    console.log $rootScope.username
-    if $rootScope.username == 'e'
-      $scope.orders = empty_orders
-    else
-      $scope.orders = full_orders
-#      $scope.orders=empty_orders
 ]
