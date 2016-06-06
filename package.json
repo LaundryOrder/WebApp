@@ -15,7 +15,9 @@
     "angular-messages": "^1.5.5",
     "angular-route": "^1.5.5",
     "angular-material": "git+https://github.com/angular/bower-material.git#master",
-    "ngstorage": "^0.3.6"
+    "ngstorage": "^0.3.6",
+    "angular-moment": "latest",
+    "moment": "latest"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.9",
