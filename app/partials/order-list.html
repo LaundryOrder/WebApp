@@ -31,7 +31,12 @@
 
 </md-toolbar>
 <md-content flex id="orders_content" layout-padding="" layout="row">
-    <div layout="column" layout-fill="">
+    <div layout="row" layout-fill="" ng-show="isLoading">
+        <span flex></span>
+        <md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+        <span flex></span>
+    </div>
+    <div layout="column" layout-fill="" ng-hide="isLoading">
         <div layout="column" ng-show="orders.length==0" style="color: #999999;" layout-align="end center">
             <md-icon md-svg-src="./assets/ic_empty_shopping_cart_black_24px.svg" id="empty_cart"></md-icon>
             <span>You have no order, why not give it a shot?</span>
@@ -61,8 +66,8 @@
                     QR Code
                 </md-button>
                 <!--<md-button>-->
-                    <!--<md-icon md-svg-src="./assets/ic_transfer_within_a_station_black_24px.svg"></md-icon>-->
-                    <!--Door Service-->
+                <!--<md-icon md-svg-src="./assets/ic_transfer_within_a_station_black_24px.svg"></md-icon>-->
+                <!--Door Service-->
                 <!--</md-button>-->
                 <md-button>
                     <md-icon md-svg-src="./assets/ic_remove_shopping_cart_black_24px.svg"></md-icon>

@@ -1,6 +1,15 @@
-listControllers = angular.module 'listControllers', ['ngMaterial', 'ngMessages']
-listControllers.controller 'ListCtrl', ['$scope', '$http', '$location', '$mdDialog',
-  ($scope, $http, $location, $mdDialog)->
+listControllers = angular.module 'listControllers', ['ngMaterial', 'ngMessages', 'ngStorage']
+listControllers.controller 'ListCtrl', ['$scope', '$http', '$location', '$mdDialog', '$localStorage',
+  ($scope, $http, $location, $mdDialog, $localStorage)->
+    $scope.isLoading = true
+    $http
+      method: 'GET'
+      url: '/orders'
+    .then (response)->
+      $scope.isLoading = false
+      $scope.orders = response.data.orders
+    , (response)->
+      $location.path "login"
     originatorEv = null
     $scope.openMenu = ($mdOpenMenu, ev)->
       originatorEv = ev
@@ -17,8 +26,9 @@ listControllers.controller 'ListCtrl', ['$scope', '$http', '$location', '$mdDial
     $scope.newOrder = ->
       $location.path "new"
     $scope.logout = ->
+      delete $localStorage.token
       $location.path "login"
-    $scope.orders = [
+    $scope.orders2 = [
       {
         "end": 1465229567931,
         "machine": 0,
