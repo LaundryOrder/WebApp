@@ -1,5 +1,5 @@
 angular
-.module 'AMPlaygroundApp0', ['ngMaterial', 'ngRoute', 'ngMessages','ngStorage',
+.module 'AMPlaygroundApp0', ['ngMaterial', 'ngRoute', 'ngMessages', 'ngStorage', 'angularMoment', 'ja.qr',
   'listControllers', 'loginControllers', 'newControllers']
 .constant 'BASE_URL', 'http://192.168.1.233:8233'
 .config ['$routeProvider', ($routeProvider)->
@@ -16,11 +16,11 @@ angular
   .otherwise
       redirectTo: '/login'
 ]
-.factory 'APIURLProcessor', ($q,$localStorage, BASE_URL)->
+.factory 'APIURLProcessor', ($q, $localStorage, BASE_URL)->
   request: (config) ->
     if config.url[0] == '/'
       config.url = BASE_URL + config.url
-      config.headers['Authorization']='Token '+$localStorage.token
+      config.headers['Authorization'] = 'Token ' + $localStorage.token
     config
 .config ['$httpProvider', ($httpProvider)->
   $httpProvider.interceptors.push('APIURLProcessor');
