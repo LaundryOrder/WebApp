@@ -33,6 +33,15 @@
   color: #000000;
   font-size: 32px; }
 
+md-progress-circular.md-fab-bottom-right {
+  height: 100px !important;
+  width: 100px !important;
+  top: auto;
+  right: 26px;
+  bottom: 24px;
+  left: auto;
+  position: absolute; }
+
 .view_div.ng-enter {
   transition: 0.2s linear all;
   opacity: 0; }
