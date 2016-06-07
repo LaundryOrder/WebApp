@@ -51,7 +51,7 @@
                 </md-card-title-media>
                 <md-card-title-text ng-show="order.status!=3" layout-padding>
                     <span class="md-title">{{order.order_time | date:'MMM d'}}</span>
-                    <span class="md-subhead"><span am-time-ago="order.order_time"></span> - {{order.status==2? 'Canceled':'Completed'}} </span>
+                    <span class="md-subhead"><span am-time-ago="order.order_time"></span> - {{order.status==1? 'Canceled':'Completed'}} </span>
                 </md-card-title-text>
                 <md-card-title-text ng-show="order.status==3" layout-padding>
                     <span class="md-title">{{order.start | date:'HH:mm'}}</span>

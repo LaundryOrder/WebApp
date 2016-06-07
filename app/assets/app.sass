@@ -1,10 +1,10 @@
 .status_icon
   background-size: cover
 
-.canceled_icon
+.completed_icon
   background-image: url("ic_check_black_24px.svg")
 
-.completed_icon
+.canceled_icon
   background-image: url("ic_close_black_24px.svg")
 
 .engaging_icon
@@ -29,6 +29,10 @@
 #new_content
   padding: 25px
 
+#avail_time
+  color: #000000
+  font-size: 32px
+
 .view_div.ng-enter
   transition: 0.2s linear all
   opacity: 0
@@ -42,6 +46,9 @@
 
 .view_div.ng-leave-active
   opacity: 0
+
+md-input-container .md-errors-spacer
+  min-height: 0
 
 md-card .md-focused, md-card .md-button:hover
   background: transparent !important
