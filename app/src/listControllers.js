@@ -7,15 +7,19 @@ listControllers.controller('ListCtrl', [
   '$scope', '$http', '$location', '$mdDialog', '$localStorage', function($scope, $http, $location, $mdDialog, $localStorage) {
     var originatorEv;
     $scope.isLoading = true;
-    $http({
-      method: 'GET',
-      url: '/orders'
-    }).then(function(response) {
-      $scope.isLoading = false;
-      return $scope.orders = response.data.orders;
-    }, function(response) {
-      return $location.path("login");
-    });
+    $scope.refresh = function() {
+      $scope.isLoading = true;
+      return $http({
+        method: 'GET',
+        url: '/orders'
+      }).then(function(response) {
+        $scope.isLoading = false;
+        return $scope.orders = response.data.orders;
+      }, function(response) {
+        return $location.path("login");
+      });
+    };
+    $scope.refresh();
     originatorEv = null;
     $scope.openMenu = function($mdOpenMenu, ev) {
       originatorEv = ev;
@@ -37,6 +41,10 @@ listControllers.controller('ListCtrl', [
       return $location.path("new");
     };
     return $scope.logout = function() {
+      $http({
+        method: 'GET',
+        url: '/revoke'
+      });
       delete $localStorage.token;
       return $location.path("login");
     };

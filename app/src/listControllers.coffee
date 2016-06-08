@@ -2,14 +2,17 @@ listControllers = angular.module 'listControllers', ['ngMaterial', 'ngMessages',
 listControllers.controller 'ListCtrl', ['$scope', '$http', '$location', '$mdDialog', '$localStorage',
   ($scope, $http, $location, $mdDialog, $localStorage)->
     $scope.isLoading = true
-    $http
-      method: 'GET'
-      url: '/orders'
-    .then (response)->
-      $scope.isLoading = false
-      $scope.orders = response.data.orders
-    , (response)->
-      $location.path "login"
+    $scope.refresh = ->
+      $scope.isLoading = true
+      $http
+        method: 'GET'
+        url: '/orders'
+      .then (response)->
+        $scope.isLoading = false
+        $scope.orders = response.data.orders
+      , (response)->
+        $location.path "login"
+    $scope.refresh()
     originatorEv = null
     $scope.openMenu = ($mdOpenMenu, ev)->
       originatorEv = ev
@@ -26,10 +29,12 @@ listControllers.controller 'ListCtrl', ['$scope', '$http', '$location', '$mdDial
     $scope.newOrder = ->
       $location.path "new"
     $scope.logout = ->
+      $http
+        method: 'GET'
+        url: '/revoke'
+      # todo confirm logout result
       delete $localStorage.token
       $location.path "login"
-# todo add revoke operation
-# todo pull down refresh
 # todo back button to exit
 # todo auto redirect by token
 ]
