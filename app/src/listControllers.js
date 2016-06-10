@@ -37,6 +37,16 @@ listControllers.controller('ListCtrl', [
         }
       });
     };
+    $scope.cancelOrder = function(order_id) {
+      return $http({
+        method: 'DELETE',
+        url: '/order/' + order_id
+      }).then(function(response) {
+        return $scope.refresh();
+      }, function(response) {
+        return $mdToast.show($mdToast.simple().textContent(response.data.msg));
+      });
+    };
     $scope.newOrder = function() {
       return $location.path("new");
     };

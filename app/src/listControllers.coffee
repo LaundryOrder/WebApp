@@ -26,6 +26,14 @@ listControllers.controller 'ListCtrl', ['$scope', '$http', '$location', '$mdDial
         controller: ($scope, $mdDialog)->
           $scope.hide = ->
             $mdDialog.hide()
+    $scope.cancelOrder = (order_id)->
+      $http
+        method: 'DELETE'
+        url: '/order/' + order_id
+      .then (response) ->
+        $scope.refresh()
+      , (response)->
+        $mdToast.show($mdToast.simple().textContent(response.data.msg))
     $scope.newOrder = ->
       $location.path "new"
     $scope.logout = ->
